@@ -1,0 +1,174 @@
+\documentclass[11pt,a4paper]{article}
+
+% -------- Page & spacing (3-page safe) --------
+\usepackage[left=2.5cm,right=2.5cm,top=1.8cm,bottom=1.8cm]{geometry}
+\usepackage{setspace}
+\setstretch{1.05}
+
+\usepackage{titlesec}
+\titlespacing*{\section}{0pt}{1.2ex}{0.8ex}
+\titlespacing*{\subsection}{0pt}{1.0ex}{0.6ex}
+
+\usepackage{amsmath}
+\raggedbottom
+% --------------------------------------------
+
+\begin{document}
+	
+	\begin{center}
+		\Large \textbf{Project Group 8: CIFAR-10 Object Recognition} \\[0.2cm]
+		\normalsize
+		Team Name: Atomax \\[0.1cm]
+		Members: Kunal Verma, Debojit Roy Chowdhury, Moulindu Mapa
+	\end{center}
+	
+	\vspace{0.3cm}
+	
+	\section{Problem Statement}
+	
+	The objective of this project is to develop a Convolutional Neural Network (CNN) for object
+	recognition using the CIFAR-10 dataset. The task involves classifying input images into one
+	of ten predefined object categories based on visual features learned during training.
+	
+	The project aims to demonstrate an understanding of deep learning concepts such as
+	convolution, pooling, feature extraction, and classification, rather than achieving
+	state-of-the-art performance. In addition to evaluating the model on the standard test
+	dataset, the trained network is further validated using images obtained from the internet
+	to assess its generalization capability on unseen real-world data.
+	
+	\section{Dataset Description}
+	
+	The dataset used in this project is the CIFAR-10 dataset, a widely used benchmark dataset
+	for image classification tasks. The dataset consists of 60,000 color images of size
+	$32 \times 32$ pixels, distributed equally across ten object classes: airplane, automobile,
+	bird, cat, deer, dog, frog, horse, ship, and truck.
+	
+	The dataset is divided into 50,000 training images and 10,000 testing images. Each image
+	is represented as an RGB image with three color channels. Prior to training, pixel values
+	are normalized to the range $[0,1]$ to improve numerical stability during optimization.
+	Class labels are converted into one-hot encoded vectors to enable multi-class
+	classification using categorical cross-entropy loss.
+	
+	The CIFAR-10 dataset is chosen due to its balanced class distribution and suitability for
+	evaluating convolutional neural networks.
+	
+	\section{Methodology}
+	
+	The methodology adopted in this project is based on supervised deep learning using a
+	Convolutional Neural Network (CNN), which is well suited for image classification tasks
+	due to its ability to automatically learn spatial hierarchies of features from raw pixel
+	data.
+	
+	The proposed approach begins with preprocessing the input images through normalization.
+	The normalized images are passed through convolutional layers that extract low-level and
+	progressively higher-level visual features, which are later used for classification.
+	
+	Max-pooling layers are employed after convolutional layers to reduce the spatial
+	dimensions of feature maps, thereby decreasing computational complexity and providing a
+	degree of translation invariance. The extracted features are subsequently flattened and
+	fed into fully connected layers that perform the final classification task.
+	
+	The network is trained using the backpropagation algorithm with categorical
+	cross-entropy as the loss function and optimized using the Adam optimizer. Model
+	performance is evaluated on a held-out test dataset as well as on external images
+	collected from the internet.
+	
+	\section{Experimental Details}
+	
+	\subsection{Architecture Description}
+	
+	The convolutional neural network designed for this project follows a sequential
+	architecture consisting of convolutional, pooling, and fully connected layers. The input
+	to the network is a $32 \times 32$ RGB image.
+	
+	The first convolutional layer applies multiple filters with a small receptive field to
+	capture low-level visual features such as edges and textures. This is followed by a
+	max-pooling layer that reduces the spatial dimensions of the feature maps while retaining
+	the most significant information. A second convolutional layer is then used to extract
+	higher-level features, followed again by max-pooling to further reduce dimensionality.
+	
+	The resulting feature maps are flattened and passed through a fully connected layer with
+	ReLU activation, enabling the network to learn non-linear combinations of the extracted
+	features. The final output layer consists of ten neurons with a softmax activation
+	function, corresponding to the ten classes in the CIFAR-10 dataset.
+	
+	A detailed summary of the network architecture is provided using TensorFlow’s
+	\texttt{model.summary()} function.
+	
+	\subsection{Evaluation Metrics}
+	
+	The performance of the proposed model is evaluated using categorical cross-entropy as
+	the loss function. Classification accuracy is used as the primary evaluation metric.
+	
+	\subsection{Dataset Split}
+	
+	The CIFAR-10 dataset is divided into a training set of 50,000 images and a test set of
+	10,000 images. The training set is used for learning model parameters, while the test set
+	is used to evaluate generalization performance.
+	
+	\subsection{Implementation Details}
+	
+	The model is implemented using the TensorFlow and Keras deep learning framework.
+	Training is performed using the Adam optimizer. The network is trained for a limited
+	number of epochs with a fixed batch size.
+	
+	All experiments are conducted on normalized image data, and model performance is
+	evaluated on both the test dataset and external images.
+	
+	\subsection{Other Methods}
+	
+	No additional optimization techniques such as data augmentation, dropout, or batch
+	normalization were employed. The model architecture was intentionally kept simple to
+	maintain interpretability and originality.
+	
+	\section{Results and Discussion}
+	
+	\subsection{Results}
+	
+	The proposed convolutional neural network was trained for 15 epochs on the CIFAR-10
+	training dataset. During training, the model showed a steady improvement in
+	classification accuracy and a corresponding reduction in loss values.
+	
+	The final evaluation on the CIFAR-10 test dataset yielded a test accuracy of approximately
+	69.24\%, with a final test loss of approximately 0.96. These results indicate reasonable
+	generalization performance given the simplicity of the architecture.
+	
+	The trained model was also tested using external images obtained from the internet and
+	was able to correctly predict object categories after appropriate preprocessing.
+	
+	\subsection{Visualizations}
+	
+	The training and validation accuracy and loss curves provide insight into the model’s
+	learning behavior. Accuracy improved steadily across epochs, while loss values decreased
+	gradually, indicating stable convergence without severe overfitting.
+	
+	\subsection{Performance Comparison}
+	
+	The convolutional neural network was compared with simpler baseline approaches typically
+	used for image classification. The obtained test accuracy highlights the effectiveness of
+	convolutional architectures for image recognition tasks.
+	
+	\subsection{Analysis}
+	
+	The results indicate that the model successfully captures discriminative visual features
+	from the CIFAR-10 dataset. Some misclassifications were observed among visually similar
+	classes due to low image resolution and limited network depth. Nevertheless, the model
+	demonstrates robust performance given its simple design.
+	
+	\subsection{Improvements}
+	
+	Future work may explore deeper architectures, regularization techniques, data
+	augmentation, and transfer learning to further improve performance.
+	
+	\section{References}
+	
+	\begin{itemize}
+		\item Krizhevsky, A., Hinton, G. (2009). \textit{Learning Multiple Layers of Features from
+			Tiny Images}. CIFAR-10 Dataset.\\
+		\texttt{https://www.cs.toronto.edu/~kriz/cifar.html}
+		
+		\item Kaggle. \textit{CIFAR-10 Object Recognition Competition}.\\
+		\texttt{https://www.kaggle.com/competitions/cifar-10}
+	\end{itemize}
+	
+\end{document}
